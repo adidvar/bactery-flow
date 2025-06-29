@@ -1,7 +1,8 @@
 #ifndef NPARAM_HPP
 #define NPARAM_HPP
 
-struct MutationSetting {
+struct MutationSetting
+{
   /**
    * @brief Rate the number of mutation in percent
    */

@@ -3,10 +3,10 @@
 
 #include "bacterium.hpp"
 #include "field.hpp"
-#include "food.hpp"
 
-class Simulation {
- public:
+class Simulation
+{
+public:
   Simulation();
 
   void PushBactery(Bacterium b);
@@ -18,7 +18,7 @@ class Simulation {
 
   const Field& GetField() const;
 
- private:
+private:
   float from_last_food_spawn_ = 0;
   float from_epoch_start = 0;
   Field field_;

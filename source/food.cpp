@@ -1,17 +1,34 @@
-#include "food.hpp"
 #include <cmath>
 
-Food::Food(const Field &field) : field_(field) {}
+#include "food.hpp"
 
-float Food::GetX() const { return x_; }
+Food::Food(const Field& field)
+    : field_(field)
+{
+}
 
-float Food::GetY() const { return y_; }
+float Food::GetX() const
+{
+  return x_;
+}
 
-bool Food::GetAlive() const { return alive_; }
+float Food::GetY() const
+{
+  return y_;
+}
 
-void Food::SetAlive(bool alive) { alive_ = alive; }
+bool Food::GetAlive() const
+{
+  return alive_;
+}
 
-void Food::PlaceRandomly() {
+void Food::SetAlive(bool alive)
+{
+  alive_ = alive;
+}
+
+void Food::PlaceRandomly()
+{
   float range = field_.GetRange();
   float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
   float radius = std::sqrt(static_cast<float>(rand()) / RAND_MAX) * range;

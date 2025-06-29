@@ -2,8 +2,8 @@
 #define PTRANSFORM_HPP
 
 /**
- * @file PositionTransformer.h
- * @brief Class to coodinates transformation
+ * @file ptransform.hpp
+ * @brief Class to coordinates transformation
  *
  * @author
  *adidvar
@@ -16,13 +16,16 @@
 /**
  * @brief The PTransformer class transforms coordinates from screen to game
  */
-class PTransformer {
+class PTransformer
+{
   /**
    * @brief screen size
    */
   size_t width, height;
   using number = float;
-  struct Vector {
+
+  struct Vector
+  {
     float x;
     float y;
   };
@@ -31,10 +34,11 @@ class PTransformer {
   Vector cposition[2] = {{-(number)width, -(number)height},
                          {(number)width, (number)height}};
 
-  static number transform_p(number current_position, number max_position,
+  static number transform_p(number current_position,
+                            number max_position,
                             number proect_max_pos);
 
- public:
+public:
   /**
    * @param width screen width
    * @param height screen height

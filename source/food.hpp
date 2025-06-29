@@ -3,9 +3,10 @@
 
 #include "field.hpp"
 
-class Food {
- public:
-  Food(const Field &field);
+class Food
+{
+public:
+  Food(const Field& field);
 
   float GetX() const;
   float GetY() const;
@@ -14,10 +15,10 @@ class Food {
 
   void PlaceRandomly();
 
- private:
+private:
   float x_, y_;
   bool alive_ = true;
-  const Field &field_;
+  const Field& field_;
 };
 
 #endif

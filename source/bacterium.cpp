@@ -2,32 +2,71 @@
 
 #include "food.hpp"
 
-Bacterium::Bacterium(const Field &field, const Network &net)
-    : field_(field), network_(net) {}
+Bacterium::Bacterium(const Field& field, const Network& net)
+    : field_(field)
+    , network_(net)
+{
+}
 
-Bacterium::Bacterium(const Field &field)
-    : field_(field), network_({2, 8, 8, 2}) {}
+Bacterium::Bacterium(const Field& field)
+    : field_(field)
+    , network_({2, 8, 8, 2})
+{
+}
 
-float Bacterium::GetX() const { return x_; }
+float Bacterium::GetX() const
+{
+  return x_;
+}
 
-float Bacterium::GetY() const { return y_; }
+float Bacterium::GetY() const
+{
+  return y_;
+}
 
-int Bacterium::GetEaten() const { return eaten_; }
+float Bacterium::GetSpeedX() const
+{
+  return speed_x_;
+}
 
-float Bacterium::GetEnergy() const { return energy_; }
+float Bacterium::GetSpeedY() const
+{
+  return speed_y_;
+}
 
-void Bacterium::PushEnergy(float energy) {
+int Bacterium::GetEaten() const
+{
+  return eaten_;
+}
+
+float Bacterium::GetEnergy() const
+{
+  return energy_;
+}
+
+void Bacterium::PushEnergy(float energy)
+{
   energy_ += energy;
   energy_ = std::min<float>(energy_, 150);
 }
 
-void Bacterium::Eat() { eaten_++; }
+void Bacterium::Eat()
+{
+  eaten_++;
+}
 
-Network Bacterium::GetNetwork() { return network_; }
+Network Bacterium::GetNetwork()
+{
+  return network_;
+}
 
-const Field &Bacterium::GetField() const { return field_; }
+const Field& Bacterium::GetField() const
+{
+  return field_;
+}
 
-void Bacterium::Play(float delta_time) {
+void Bacterium::Play(float delta_time)
+{
   Eigen::VectorXf input(2);
   // input(0) = energy_;
   // input(0) = x_ / field_.GetRange();
@@ -50,10 +89,8 @@ void Bacterium::Play(float delta_time) {
     input(1) = 0;
   }
 
-
   const float max_force = 50;
   const float control_force = 150;
-
 
   auto output = network_.Calculate(input);
 
@@ -61,7 +98,7 @@ void Bacterium::Play(float delta_time) {
   float control_ay = control_force * output(1);
 
   float distance = std::sqrt(x_ * x_ + y_ * y_);
-  float range = field_.GetRange()* 2.0;
+  float range = field_.GetRange() * 2.0;
 
   float norm_x = (distance > 0) ? -x_ / distance : 0.0f;
   float norm_y = (distance > 0) ? -y_ / distance : 0.0f;
@@ -81,6 +118,9 @@ void Bacterium::Play(float delta_time) {
   x_ += speed_x;
   y_ += speed_y;
 
+  speed_x_ = speed_x;
+  speed_y_ = speed_y;
+
   /*
   x_ = std::min<float>(x_, field_.GetRange());
   y_ = std::min<float>(y_, field_.GetRange());
@@ -89,14 +129,13 @@ void Bacterium::Play(float delta_time) {
   y_ = std::max<float>(y_, -field_.GetRange());
   */
 
-
-
   energy_ -= 5 * delta_time;
   // energy_ = std::min<float>(energy_, 1000);
   energy_ = std::max<float>(energy_, 0);
 }
 
-void Bacterium::PlaceRandomly() {
+void Bacterium::PlaceRandomly()
+{
   float range = field_.GetRange();
   float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
   float radius = std::sqrt(static_cast<float>(rand()) / RAND_MAX) * range;
@@ -106,10 +145,17 @@ void Bacterium::PlaceRandomly() {
   energy_ = 100;
 }
 
-void Bacterium::Mutation() { network_.MakeMutation(); }
+void Bacterium::Mutation()
+{
+  network_.MakeMutation();
+}
 
-void Bacterium::RandomGen() { network_.GenerateRandomly(); }
+void Bacterium::RandomGen()
+{
+  network_.GenerateRandomly();
+}
 
-void Bacterium::Crossing(const Bacterium &b) {
+void Bacterium::Crossing(const Bacterium& b)
+{
   network_.MakeCrossing(b.network_);
 }

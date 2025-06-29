@@ -1,12 +1,15 @@
 #ifndef SELECTION_HPP
 #define SELECTION_HPP
-#include <bacterium.hpp>
+
 #include <vector>
 
-std::vector<std::shared_ptr<Bacterium>> Selection(
-    const std::vector<std::shared_ptr<Bacterium>> &from);
+#include <bacterium.hpp>
 
-struct SelectioSettings {
+std::vector<std::shared_ptr<Bacterium>> Selection(
+    const std::vector<std::shared_ptr<Bacterium>>& from);
+
+struct SelectioSettings
+{
   constexpr const static int Generation = 100;
   constexpr const static float Sample = 0.08;
 
