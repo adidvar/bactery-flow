@@ -5,9 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "food.hpp"
 #include "ptransform.hpp"
 #include "simulation.hpp"
-#include "food.hpp"
 
 class MainWindow
 {

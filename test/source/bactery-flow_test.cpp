@@ -1,5 +1,3 @@
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("bactery-flow", "")
-{
-}
+TEST_CASE("bactery-flow", "") {}

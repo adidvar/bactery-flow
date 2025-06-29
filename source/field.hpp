@@ -26,7 +26,7 @@ private:
   std::vector<std::shared_ptr<Bacterium>> bacteria_;
 };
 
-#include "food.hpp"
 #include "bacterium.hpp"
+#include "food.hpp"
 
 #endif
