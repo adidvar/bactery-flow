@@ -137,7 +137,7 @@ void Bacterium::Play(float delta_time)
 void Bacterium::PlaceRandomly()
 {
   float range = field_.GetRange();
-  float angle = static_cast<float>(rand()) / RAND_MAX * 2 * ;
+  float angle = static_cast<float>(rand()) / RAND_MAX * 2 *;
   float radius = std::sqrt(static_cast<float>(rand()) / RAND_MAX) * range;
 
   x_ = radius * std::cos(angle);
